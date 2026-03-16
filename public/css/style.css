@@ -1,0 +1,813 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --white: #f5f5f0;
+    --ink-black: #1a1a1a;
+    --charcoal: #2d2d2d;
+    --stone-gray: #6b6b6b;
+    --mist-gray: #a8a8a8;
+    --water-gray: #d4d4d4;
+    --accent: #8b7355;
+    --accent-light: #a69076;
+}
+
+body {
+    font-family: 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif;
+    line-height: 1.8;
+    color: var(--ink-black);
+    background: var(--white);
+    min-height: 100vh;
+}
+
+/* 几何纹理背景 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, var(--water-gray) 1px, transparent 1px),
+        linear-gradient(var(--water-gray) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* 导航栏 - 黛瓦风格 */
+.navbar {
+    background: var(--ink-black);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid var(--ink-black);
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--ink-black) 10%, 
+        var(--ink-black) 90%, 
+        transparent 100%
+    );
+    opacity: 0.1;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 40px;
+}
+
+.logo h1 {
+    font-size: 1.6rem;
+    color: var(--white);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    position: relative;
+}
+
+.logo h1::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--white);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--mist-gray);
+    font-weight: 300;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--white);
+    transition: width 0.3s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--white);
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+/* Hero区域 - 几何极简 */
+.hero {
+    padding: 6rem 0;
+    background: var(--white);
+    position: relative;
+    border-bottom: 1px solid var(--water-gray);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, transparent 50%, var(--water-gray) 50%),
+        linear-gradient(-45deg, transparent 50%, var(--ink-black) 50%);
+    background-size: 120px 120px, 80px 80px;
+    background-position: 0 0, 60px 60px;
+    opacity: 0.1;
+}
+
+.hero .container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-content h2 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--ink-black);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.2em;
+    position: relative;
+}
+
+.hero-content h2::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--ink-black);
+}
+
+.hero-content h3 {
+    font-size: 1.3rem;
+    color: var(--stone-gray);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+}
+
+.hero-content p {
+    font-size: 1rem;
+    color: var(--stone-gray);
+    margin-bottom: 2.5rem;
+    line-height: 2;
+    max-width: 500px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--ink-black);
+    background: transparent;
+    color: var(--ink-black);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--ink-black);
+    transition: left 0.3s;
+    z-index: -1;
+}
+
+.btn:hover {
+    color: var(--white);
+}
+
+.btn:hover::before {
+    left: 0;
+}
+
+.btn-primary {
+    background: var(--ink-black);
+    color: var(--white);
+}
+
+.btn-primary::before {
+    background: var(--charcoal);
+}
+
+.btn-audio {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    border-width: 1px;
+}
+
+.suzhou-pattern {
+    height: 350px;
+    background: var(--white);
+    border: 1px solid var(--ink-black);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 几何图案 - 苏博风格 */
+.suzhou-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, var(--ink-black) 25%, transparent 25%),
+        linear-gradient(-135deg, var(--ink-black) 25%, transparent 25%),
+        linear-gradient(45deg, var(--ink-black) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--ink-black) 25%, transparent 25%);
+    background-size: 60px 60px;
+    background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+    opacity: 0.15;
+}
+
+.suzhou-pattern::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(--ink-black);
+}
+
+/* 特色区域 */
+.features {
+    padding: 5rem 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--water-gray);
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--ink-black);
+    margin-bottom: 4rem;
+    letter-spacing: 0.2em;
+    position: relative;
+}
+
+.features h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 1px;
+    background: var(--ink-black);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--ink-black);
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--ink-black);
+    transition: all 0.3s;
+}
+
+.feature-card:last-child {
+    border-right: none;
+}
+
+.feature-card:hover {
+    background: var(--ink-black);
+    color: var(--white);
+}
+
+.feature-card:hover .feature-icon,
+.feature-card:hover h3 {
+    color: var(--white);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.feature-card h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink-black);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+}
+
+.feature-card p {
+    font-size: 0.9rem;
+    color: var(--stone-gray);
+    line-height: 1.8;
+    transition: color 0.3s;
+}
+
+.feature-card:hover p {
+    color: var(--mist-gray);
+}
+
+/* 每日一句 */
+.daily-word {
+    padding: 5rem 0;
+    background: var(--ink-black);
+    position: relative;
+}
+
+.daily-word::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 49.5%, var(--charcoal) 49.5%, var(--charcoal) 50.5%, transparent 50.5%),
+        linear-gradient(0deg, transparent 49.5%, var(--charcoal) 49.5%, var(--charcoal) 50.5%, transparent 50.5%);
+    background-size: 100px 100px;
+    opacity: 0.3;
+}
+
+.daily-word h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 3rem;
+    letter-spacing: 0.3em;
+    position: relative;
+    z-index: 1;
+}
+
+.daily-word-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: transparent;
+    padding: 3rem;
+    text-align: center;
+    border: 1px solid var(--charcoal);
+    position: relative;
+    z-index: 1;
+}
+
+.daily-word-card::before,
+.daily-word-card::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--white);
+}
+
+.daily-word-card::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.daily-word-card::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+}
+
+.word-chinese {
+    font-size: 3rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+}
+
+.word-pinyin {
+    font-size: 1.2rem;
+    color: var(--mist-gray);
+    margin-bottom: 1rem;
+    font-style: normal;
+    letter-spacing: 0.15em;
+}
+
+.word-meaning {
+    font-size: 1rem;
+    color: var(--mist-gray);
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+}
+
+.btn-audio {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.btn-audio:hover {
+    background: var(--white);
+    color: var(--ink-black);
+}
+
+/* 关于 */
+.about {
+    padding: 5rem 0;
+    background: var(--white);
+    border-top: 1px solid var(--water-gray);
+}
+
+.about h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--ink-black);
+    margin-bottom: 4rem;
+    letter-spacing: 0.2em;
+    position: relative;
+}
+
+.about h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 1px;
+    background: var(--ink-black);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+
+.about-text p {
+    color: var(--stone-gray);
+    line-height: 2;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    text-indent: 2em;
+}
+
+.about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.stat {
+    text-align: center;
+    background: var(--white);
+    padding: 2rem;
+    border: 1px solid var(--ink-black);
+    position: relative;
+}
+
+.stat::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px solid var(--water-gray);
+    pointer-events: none;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    color: var(--ink-black);
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.stat-label {
+    color: var(--stone-gray);
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+}
+
+/* 词汇页面 */
+.vocabulary-header {
+    padding: 4rem 0;
+    background: var(--ink-black);
+    text-align: center;
+}
+
+.vocabulary-header h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: 0.2em;
+}
+
+.vocabulary-header p {
+    color: var(--mist-gray);
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+}
+
+.category-filter {
+    padding: 2rem 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--water-gray);
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+}
+
+.filter-btn {
+    padding: 0.8rem 2.5rem;
+    border: 1px solid var(--ink-black);
+    background: var(--white);
+    color: var(--ink-black);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: -1px;
+}
+
+.filter-btn:first-child {
+    margin-left: 0;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--ink-black);
+    color: var(--white);
+}
+
+.vocabulary-list {
+    padding: 3rem 0;
+    background: var(--white);
+    min-height: 400px;
+}
+
+.vocabulary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--ink-black);
+    border: 1px solid var(--ink-black);
+}
+
+.vocabulary-card {
+    background: var(--white);
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.vocabulary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--ink-black);
+    transition: height 0.3s;
+}
+
+.vocabulary-card:hover {
+    background: #fafafa;
+}
+
+.vocabulary-card:hover::before {
+    height: 100%;
+}
+
+.vocabulary-chinese {
+    font-size: 2rem;
+    color: var(--ink-black);
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+}
+
+.vocabulary-pinyin {
+    font-size: 1rem;
+    color: var(--mist-gray);
+    margin-bottom: 0.5rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+}
+
+.vocabulary-meaning {
+    color: var(--stone-gray);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+.vocabulary-example {
+    background: transparent;
+    padding: 0.8rem 0;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--stone-gray);
+    border-top: 1px solid var(--water-gray);
+    border-bottom: 1px solid var(--water-gray);
+}
+
+.vocabulary-audio {
+    display: flex;
+    gap: 1rem;
+}
+
+.audio-btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--ink-black);
+    background: transparent;
+    color: var(--ink-black);
+    cursor: pointer;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+}
+
+.audio-btn:hover {
+    background: var(--ink-black);
+    color: var(--white);
+}
+
+.audio-btn.playing {
+    background: var(--ink-black);
+    color: var(--white);
+}
+
+.loading {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--stone-gray);
+    padding: 4rem;
+    letter-spacing: 0.1em;
+    background: var(--white);
+    grid-column: 1 / -1;
+}
+
+/* 页脚 */
+footer {
+    background: var(--ink-black);
+    padding: 2.5rem 0;
+    text-align: center;
+    color: var(--mist-gray);
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+}
+
+footer p {
+    position: relative;
+    display: inline-block;
+}
+
+footer p::before,
+footer p::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: var(--charcoal);
+}
+
+footer p::before {
+    right: calc(100% + 15px);
+}
+
+footer p::after {
+    left: calc(100% + 15px);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .hero .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+        border: none;
+    }
+    
+    .feature-card {
+        border: 1px solid var(--ink-black);
+        border-bottom: none;
+    }
+    
+    .feature-card:last-child {
+        border-bottom: 1px solid var(--ink-black);
+    }
+    
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    .vocabulary-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+    
+    .suzhou-pattern {
+        height: 250px;
+    }
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ink-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--charcoal);
+}

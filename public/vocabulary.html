@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>词汇学习 - 苏州话教学</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>苏州话教学</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="#" class="active">词汇学习</a></li>
+                    <li><a href="index.html#about">关于</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="vocabulary-header">
+            <div class="container">
+                <h2>词汇学习</h2>
+                <p>点击分类查看不同类型的苏州话词汇</p>
+            </div>
+        </section>
+
+        <section class="category-filter">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">全部</button>
+                    <button class="filter-btn" data-category="greetings">问候语</button>
+                    <button class="filter-btn" data-category="numbers">数字</button>
+                    <button class="filter-btn" data-category="common">常用词汇</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="vocabulary-list">
+            <div class="container">
+                <div id="vocabulary-container" class="vocabulary-grid">
+                    <div class="loading">加载中...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 苏州话教学平台. 传承吴语文化，弘扬江南文明.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/vocabulary.js"></script>
+</body>
+</html>
