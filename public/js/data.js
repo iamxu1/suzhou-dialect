@@ -1,4 +1,4 @@
-[
+const vocabularyData = [
     {
         "id": "hello",
         "chinese": "你好",
@@ -319,4 +319,4 @@
         "category": "common",
         "example": "那是谁？"
     }
-]
+];

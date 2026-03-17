@@ -13,27 +13,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentCategory = 'all';
     
-    // 加载词汇数据
-    async function loadVocabulary(category = 'all') {
+    function loadVocabulary(category = 'all') {
         console.log('加载词汇，分类:', category);
         
         try {
-            const url = category === 'all' 
-                ? '/api/vocabulary' 
-                : `/api/vocabulary?category=${category}`;
+            let vocabulary = vocabularyData;
             
-            console.log('请求 URL:', url);
-            
-            const response = await fetch(url);
-            console.log('响应状态:', response.status);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            if (category !== 'all') {
+                vocabulary = vocabularyData.filter(item => item.category === category);
             }
             
-            const vocabulary = await response.json();
             console.log('词汇数据:', vocabulary);
-            
             renderVocabulary(vocabulary);
         } catch (error) {
             console.error('加载词汇失败:', error);
